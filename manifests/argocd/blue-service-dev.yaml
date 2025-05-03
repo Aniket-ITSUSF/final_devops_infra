@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blue-service-dev
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
+    targetRevision: main
+    path: 'manifests/helm-charts/blue-service'
+    helm:
+      valueFiles:
+        - values-qa.yaml
+
+  destination:
+    name: dev
+    namespace: dev
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
