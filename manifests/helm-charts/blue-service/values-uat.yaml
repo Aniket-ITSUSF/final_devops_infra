@@ -1,0 +1,12 @@
+image:
+  repository: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/blue-service
+  tag: uat
+
+db:
+  host: <DB_HOST>
+  port: <DB_PORT>
+  user: <DB_USER>
+  password: <DB_PASS>
+  name: <DB_NAME>
+
+replicaCount: 2
