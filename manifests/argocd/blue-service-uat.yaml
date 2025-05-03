@@ -9,10 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
-    path: 'manifests/helm-charts/blue-service'
-    helm:
-      valueFiles:
-        - values-uat.yaml
+    path: 'manifests/k8s/blue-service/uat'
 
   destination:
     name: uat

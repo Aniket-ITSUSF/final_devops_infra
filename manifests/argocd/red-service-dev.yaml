@@ -9,10 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
-    path: 'manifests/helm-charts/red-service'
-    helm:
-      valueFiles:
-        - values-qa.yaml
+    path: 'manifests/k8s/red-service/dev'
 
   destination:
     name: dev

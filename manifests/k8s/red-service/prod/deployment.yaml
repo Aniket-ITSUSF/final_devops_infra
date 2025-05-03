@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: red-service
+  labels:
+    app: red-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: red-service
+  template:
+    metadata:
+      labels:
+        app: red-service
+    spec:
+      containers:
+        - name: red-service
+          image: ${{AWS_ACCOUNT_ID}}.dkr.ecr.${{AWS_REGION}}.amazonaws.com/red-service:prod
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: ${{DB_HOST}}
+            - name: DB_PORT
+              value: ${{DB_PORT}}
+            - name: DB_USER
+              value: ${{DB_USER}}
+            - name: DB_PASS
+              value: ${{DB_PASS}}
+            - name: DB_NAME
+              value: ${{DB_NAME}}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
