@@ -30,7 +30,7 @@ spec:
             - name: DB_PASS
               value: Admin1234
             - name: DB_NAME
-              value: mydb
+              value: color_db
           readinessProbe:
             httpGet:
               path: /health
