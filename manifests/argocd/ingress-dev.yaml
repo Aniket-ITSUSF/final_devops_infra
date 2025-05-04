@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: red-service-dev
+  name: ingress-dev
   namespace: argocd
 spec:
   project: default
@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
-    path: 'manifests/k8s/red-service/dev'
+    path: 'manifests/k8s/ingress-dev.yaml'
 
   destination:
     name: dev
@@ -19,5 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-  syncOptions:
-    - CreateNamespace=true
+    syncOptions:
+      - CreateNamespace=true
