@@ -4,8 +4,7 @@ metadata:
   name: env-ingress
   namespace: dev
   annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - host: develop.dev-ops-project.com
