@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: blue-service
-          image: ${{AWS_ACCOUNT_ID}}.dkr.ecr.${{AWS_REGION}}.amazonaws.com/blue-service:develop
+          image: 653572728575.dkr.ecr.us-east-1.amazonaws.com/blue-service:develop
           ports:
             - containerPort: 3000
           env:
