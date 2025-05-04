@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-dev
+  name: red-service-prod-green
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
-    path: 'manifests/k8s/ingress-dev.yaml'
-
+    path: 'manifests/k8s/red-service/prod-green'
   destination:
-    name: dev
-    namespace: dev
-
+    name: prod
+    namespace: prod-green
   syncPolicy:
     automated:
       prune: true

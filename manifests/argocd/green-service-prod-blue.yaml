@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: green-service-prod
+  name: green-service-prod-blue
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
-    path: 'manifests/k8s/green-service/prod'
-
+    path: 'manifests/k8s/green-service/prod-blue'
   destination:
     name: prod
-    namespace: prod
-
+    namespace: prod-blue
   syncPolicy:
     automated:
       prune: true

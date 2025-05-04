@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blue-service
-  namespace: dev
+  namespace: prod-green
   labels:
     app: blue-service
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blue-service
-        image: 654654391642.dkr.ecr.us-east-1.amazonaws.com/blue-service:develop
+        image: 654654391642.dkr.ecr.us-east-1.amazonaws.com/blue-service:prod
         ports:
         - containerPort: 3000
         env:

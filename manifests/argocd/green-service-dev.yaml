@@ -5,16 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
     targetRevision: main
     path: 'manifests/k8s/green-service/dev'
-
   destination:
     name: dev
     namespace: dev
-
   syncPolicy:
     automated:
       prune: true

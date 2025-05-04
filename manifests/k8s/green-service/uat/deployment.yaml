@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: green-service
+  namespace: uat
   labels:
     app: green-service
 spec:
@@ -15,26 +16,26 @@ spec:
         app: green-service
     spec:
       containers:
-        - name: green-service
-          image: ${{AWS_ACCOUNT_ID}}.dkr.ecr.${{AWS_REGION}}.amazonaws.com/green-service:uat
-          ports:
-            - containerPort: 3000
-          env:
-            - name: DB_HOST
-              value: ${{DB_HOST}}
-            - name: DB_PORT
-              value: ${{DB_PORT}}
-            - name: DB_USER
-              value: ${{DB_USER}}
-            - name: DB_PASS
-              value: ${{DB_PASS}}
-            - name: DB_NAME
-              value: ${{DB_NAME}}
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 3000
+      - name: green-service
+        image: 654654391642.dkr.ecr.us-east-1.amazonaws.com/green-service:uat
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: "color-db.cdcc0cc60yne.us-east-1.rds.amazonaws.com"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USER
+          value: "admin"
+        - name: DB_PASS
+          value: "Admin1234"
+        - name: DB_NAME
+          value: "color_db"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000

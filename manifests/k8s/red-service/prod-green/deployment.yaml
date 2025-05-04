@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blue-service
-  namespace: dev
+  name: red-service
+  namespace: prod-green
   labels:
-    app: blue-service
+    app: red-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: blue-service
+      app: red-service
   template:
     metadata:
       labels:
-        app: blue-service
+        app: red-service
     spec:
       containers:
-      - name: blue-service
-        image: 654654391642.dkr.ecr.us-east-1.amazonaws.com/blue-service:develop
+      - name: red-service
+        image: 654654391642.dkr.ecr.us-east-1.amazonaws.com/red-service:prod
         ports:
         - containerPort: 3000
         env:

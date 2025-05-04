@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: red-service
+  namespace: prod-blue
 spec:
   type: ClusterIP
   selector:
     app: red-service
   ports:
-    - port: 80
-      targetPort: 3000
+  - port: 80
+    targetPort: 3000
