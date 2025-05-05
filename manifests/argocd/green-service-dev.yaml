@@ -3,12 +3,17 @@ kind: Application
 metadata:
   name: green-service-dev
   namespace: argocd
+  annotations:
+    # watch this ECR image…
+    argocd-image-updater.argoproj.io/image-list: |
+      green-service=654654391642.dkr.ecr.us-east-1.amazonaws.com/green-service
+    argocd-image-updater.argoproj.io/green-service.dev.update-strategy: latest
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
+    repoURL: https://github.com/Aniket-ITSUSF/final_devops_infra.git
     targetRevision: dev
-    path: 'manifests/k8s/green-service/dev'
+    path: manifests/k8s/green-service/dev
   destination:
     name: dev
     namespace: dev

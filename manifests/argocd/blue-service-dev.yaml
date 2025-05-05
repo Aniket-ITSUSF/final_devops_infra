@@ -3,12 +3,16 @@ kind: Application
 metadata:
   name: blue-service-dev
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: |
+      blue-service=654654391642.dkr.ecr.us-east-1.amazonaws.com/blue-service
+    argocd-image-updater.argoproj.io/blue-service.dev.update-strategy: latest
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
+    repoURL: https://github.com/Aniket-ITSUSF/final_devops_infra.git
     targetRevision: dev
-    path: 'manifests/k8s/blue-service/dev'
+    path: manifests/k8s/blue-service/dev
   destination:
     name: dev
     namespace: dev
