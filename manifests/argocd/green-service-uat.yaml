@@ -3,12 +3,16 @@ kind: Application
 metadata:
   name: green-service-uat
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: |
+      green-service=654654391642.dkr.ecr.us-east-1.amazonaws.com/green-service
+    argocd-image-updater.argoproj.io/green-service.uat.update-strategy: latest
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
+    repoURL: https://github.com/Aniket-ITSUSF/final_devops_infra.git
     targetRevision: uat
-    path: 'manifests/k8s/green-service/uat'
+    path: manifests/k8s/green-service/uat
   destination:
     name: uat
     namespace: uat

@@ -3,12 +3,17 @@ kind: Application
 metadata:
   name: blue-service-uat
   namespace: argocd
+  annotations:
+    # watch this ECR image…
+    argocd-image-updater.argoproj.io/image-list: |
+      blue-service=654654391642.dkr.ecr.us-east-1.amazonaws.com/blue-service
+    argocd-image-updater.argoproj.io/blue-service.uat.update-strategy: latest
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Aniket-ITSUSF/final_devops_infra.git'
+    repoURL: https://github.com/Aniket-ITSUSF/final_devops_infra.git
     targetRevision: uat
-    path: 'manifests/k8s/blue-service/uat'
+    path: manifests/k8s/blue-service/uat
   destination:
     name: uat
     namespace: uat
