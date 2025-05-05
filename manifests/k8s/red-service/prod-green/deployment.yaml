@@ -31,6 +31,8 @@ spec:
           value: "Admin1234"
         - name: DB_NAME
           value: "color_db"
+        - name: COLOR
+          value: "red"
         readinessProbe:
           httpGet:
             path: /health
