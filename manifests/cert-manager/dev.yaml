@@ -1,0 +1,16 @@
+# manifests/cert-manager/dev-certificate.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dev-tls
+  namespace: dev
+  annotations:
+    # ← ensure the ACME HTTP-01 solver uses your nginx Ingress class
+    cert-manager.io/acme-http01-ingress-class: nginx
+spec:
+  secretName: dev-tls
+  dnsNames:
+    - dev.dev-ops-project.com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

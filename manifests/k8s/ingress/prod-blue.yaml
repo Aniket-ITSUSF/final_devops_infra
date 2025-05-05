@@ -5,9 +5,17 @@ metadata:
   namespace: prod-blue
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/acme-http01-ingress-class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - dev-ops-project.com
+      secretName: prod-blue-tls
+
   rules:
     - host: dev-ops-project.com
       http:

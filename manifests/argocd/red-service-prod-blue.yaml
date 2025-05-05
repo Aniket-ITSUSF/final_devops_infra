@@ -12,9 +12,4 @@ spec:
   destination:
     name: prod
     namespace: prod-blue
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  syncPolicy: {}

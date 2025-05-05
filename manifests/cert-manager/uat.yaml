@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: uat-tls
+  namespace: uat
+spec:
+  secretName: uat-tls
+  dnsNames:
+    - uat.dev-ops-project.com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

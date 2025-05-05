@@ -1,0 +1,33 @@
+# k8s/argocd/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/acme-http01-ingress-class: nginx
+
+    # speak HTTP to the backend (Argo CD listens on 8080)
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+
+    # redirect all HTTP → HTTPS
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: argocd.dev-ops-project.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - argocd.dev-ops-project.com
+      secretName: argocd-tls
