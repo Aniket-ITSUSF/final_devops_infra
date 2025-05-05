@@ -12,32 +12,35 @@ spec:
     - host: dev.dev-ops-project.com
       http:
         paths:
-          # Default root → blue-service
-          - path: ^/(|$)(.*)
-            pathType: ImplementationSpecific
+          # 1) root “/” → blue-service (no regex needed)
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name: blue-service
                 port:
                   number: 80
-          # /red → red-service
-          - path: ^/red(/|$)(.*)
+
+          # 2) /red      → red-service
+          - path: /red(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
                 name: red-service
                 port:
                   number: 80
-          # /blue → blue-service
-          - path: ^/blue(/|$)(.*)
+
+          # 3) /blue     → blue-service
+          - path: /blue(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
                 name: blue-service
                 port:
                   number: 80
-          # /green → green-service
-          - path: ^/green(/|$)(.*)
+
+          # 4) /green    → green-service
+          - path: /green(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
