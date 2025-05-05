@@ -5,30 +5,42 @@ metadata:
   namespace: dev
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  ingressClassName: nginx
   rules:
-  - host: dev.dev-ops-project.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: blue-service
-            port:
-              number: 80
-      - path: /red
-        pathType: Prefix
-        backend:
-          service:
-            name: red-service
-            port:
-              number: 80
-      - path: /green
-        pathType: Prefix
-        backend:
-          service:
-            name: green-service
-            port:
-              number: 80
+    - host: dev.dev-ops-project.com
+      http:
+        paths:
+          # Default root → blue-service
+          - path: ^/(|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: blue-service
+                port:
+                  number: 80
+          # /red → red-service
+          - path: ^/red(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: red-service
+                port:
+                  number: 80
+          # /blue → blue-service
+          - path: ^/blue(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: blue-service
+                port:
+                  number: 80
+          # /green → green-service
+          - path: ^/green(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: green-service
+                port:
+                  number: 80
